@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comissão - Yan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <main>
+        <div class="container pt-5">
+            <!-- Título -->
+            <div class="row justify-content-center">
+                <h1 class="text-center mt-3 ff-oswald text-light fw-light">
+                    Informações da Venda
+                </h1>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-8">
+                    <form id="formVenda" action="cadastrar_venda" method="POST"
+                        class="form-control bg-transparent form-style">
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <label for="dataVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Data da
+                                    Venda</label>
+                                <input type="date" name="dataVenda" id="dataVenda" class="form-control bg-transparent"
+                                    required autocomplete="off" min="1900-01-01" max="2500-12-31">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="numeroTitulo" class="form-label fw-semibold mb-1 fs-6 text-light">Nº do
+                                    Título</label>
+                                <input type="number" name="numeroTitulo" id="numeroTitulo"
+                                    class="form-control bg-transparent" required autocomplete="off" placeholder="Nº">
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label for="titular" class="form-label fw-semibold mb-1 fs-6 text-light">Nome do
+                                    Titular</label>
+                                <input type="text" name="nomeTitular" id="nomeTitular"
+                                    class="form-control bg-transparent" required autocomplete="off" placeholder="Nome:">
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label for="titular" class="form-label fw-semibold mb-1 fs-6 text-light">CPF do
+                                    Titular</label>
+                                <input type="text" name="cpfTitular" id="cpfTitular" class="form-control bg-transparent"
+                                    required autocomplete="off" placeholder="CPF:" maxlength="14">
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label for="valorVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Valor da
+                                    Venda</label>
+                                <input type="text" name="valorVenda" id="valorVenda" class="form-control bg-transparent"
+                                    required autocomplete="off" placeholder="R$">
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label for="consultor"
+                                    class="form-label fw-semibold mb-1 fs-6 text-light">Consultor</label>
+                                <input type="text" name="consultor" id="consultor" class="form-control bg-transparent"
+                                    required autocomplete="off" placeholder="Nome:">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-success mt-3">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="/lista_vendas" class="nav-link text-white linkVendas">
+                        > Ver lista de vendas
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="toastCadastro" class="toast align-items-center text-bg-success border-0 w-auto" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="toast-body pt-1 pb-2 w-auto">
+                    <i class="bi bi-currency-dollar fs-5 text-white fw-semibold"></i>
+                    <span class="pb-2">
+                        Venda cadastrada com sucesso!
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        function formatCPF(cpf) {
+            return cpf
+                // > Remove caracteres não numéricos
+                .replace(/\D/g, '')
+
+                // > Adiciona o 1º ponto
+                .replace(/(\d{3})(\d)/, '$1.$2')
+
+                // > Adiciona o 2º ponto
+                .replace(/(\d{3})(\d)/, '$1.$2')
+
+                // > Adiciona o traço
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        }
+        const cpfInput = document.getElementById('cpfTitular');
+        cpfInput.addEventListener('input', function () {
+
+            // > Formata o CPF enquanto o usuário digita
+            this.value = formatCPF(this.value);
+        });
+
+
+
+        // > Mostra o Toast de notificação de cadastro de venda
+        document.getElementById('formVenda').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const toastEl = document.getElementById('toastCadastro');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+
+            setTimeout(() => {
+                e.target.submit();
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

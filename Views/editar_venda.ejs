@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar informações da venda</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/cadastro.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/edit-icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <main>
+        <div class="container pt-5">
+            <!-- Título -->
+            <div class="row justify-content-center">
+                <h1 class="text-center mt-3 ff-oswald text-light fw-light">
+                    Editar Informações do Título Nº '<%= venda.numeroTitulo %>'
+                </h1>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-8">
+                    <form id="formEdicao" action="/salvar_edicao" method="POST"
+                        class="form-control bg-transparent form-style">
+                        <div class="row">
+                            <input type="hidden" name="idVenda" id="idVenda" value="<%= venda.id %>">
+                            <div class="col">
+                                <label for="dataVenda" class="form-label text-white fw-light ff-oswald">Data da
+                                    Venda</label>
+                                <input type="date" name="dataVenda" id="dataVenda" class="form-control bg-transparent"
+                                    value="<%= venda.dataVenda %>">
+                            </div>
+                            <div class="col">
+                                <label for="numeroTitulo" class="form-label text-white fw-light ff-oswald">Nº do
+                                    Título</label>
+                                <input type="number" name="numeroTitulo" id="numeroTitulo"
+                                    class="form-control bg-transparent" value="<%= venda.numeroTitulo %>">
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label for="nomeTitular" class="form-label text-white fw-light ff-oswald">Nome do
+                                        Titular</label>
+                                    <input type="text" name="nomeTitular" id="nomeTitular"
+                                        class="form-control bg-transparent" value="<%= venda.nomeTitular %>">
+                                </div>
+                                <div class="col">
+                                    <label for="valorVenda" class="form-label text-white fw-light ff-oswald">Valor da
+                                        Venda</label>
+                                    <input type="text" name="valorVenda" id="valorVenda" class="form-control bg-transparent"
+                                        value="<%= venda.valorVenda %>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-outline-success mt-3">Salvar</button>
+                            </div>
+                            <div class="col-auto">
+                                <a href="/lista_vendas" class="btn btn-outline-danger mt-3">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+            <div id="toastEdicao" class="toast align-items-center text-bg-success border-0 w-auto" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="toast-body pt-1 pb-2 w-auto">
+                    <i class="bi bi-currency-dollar fs-5 text-white fw-semibold"></i>
+                    <span class="pb-2">
+                        Venda editada com sucesso!
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // > Mostra o Toast de notificação de cadastro de venda
+        document.getElementById('formEdicao').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const toastEl = document.getElementById('toastEdicao');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+
+            setTimeout(() => {
+                e.target.submit();
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

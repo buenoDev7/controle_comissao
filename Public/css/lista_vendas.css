@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    max-height: 1000vh;
+    background-image: url('/img/wpp_cadastro.png');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: repeat;
+    backdrop-filter: blur(3px) brightness(.4);
+    padding-bottom: 30px;
+}
+
+.accordion-button:focus,
+.accordion-button:not(:focus),
+.accordion-button::after {
+    box-shadow: none;
+    outline: none;
+    border-bottom: none;
+}
+
+.ff-oswald {
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
+}
+
+.valor-comissao {
+    color: rgb(9, 237, 21);
+}
+
+.link-vendas {
+    color: white;
+    position: absolute;
+    left: 70px;
+    top: 20px;
+}
+
+.del-itens {
+    position: absolute;
+    right: 40px;
+    top: 26px;
+    color: #e3e3e3;
+}
+
+.link-edit {
+    position: relative;
+    left: 99%;
+}
+
+.del-itens:hover,
+.del-itens:focus {
+    border: 0;
+    outline: none;
+    color: rgb(233, 97, 97);
+    transform: scale(1.1);
+    transition: all 320ms ease-in-out;
+    filter: drop-shadow(5px 5px 15px rgb(233, 97, 97));
+}
+
+.relatorio-vendas {
+    position: absolute;
+    right: 120px;
+    top: 26px;
+    color: #e3e3e3;
+}
+
+.link-vendas:focus,
+.link-vendas:hover,
+.relatorio-vendas:hover,
+.relatorio-vendas:focus {
+    border: 0;
+    outline: none;
+    color: rgb(91, 228, 91);
+    transform: scale(1.1);
+    transition: all 320ms ease-in-out;
+    filter: drop-shadow(5px 5px 15px rgb(91, 228, 91));
+}
