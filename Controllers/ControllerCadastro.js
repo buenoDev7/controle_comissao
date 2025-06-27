@@ -135,7 +135,7 @@ module.exports = {
                 totalVendasCount++; // Incrementa o contador de vendas
 
                 const row = worksheet.addRow({
-                    dataVendaFormatada: new Date(venda.dataVenda).toLocaleDateString('pt-BR'),
+                    dataVendaFormatada: new Date(venda.dataVenda).toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
                     numeroTitulo: Number(venda.numeroTitulo),
                     nomeTitular: venda.nomeTitular,
                     cpfTitular: venda.cpfTitular,
