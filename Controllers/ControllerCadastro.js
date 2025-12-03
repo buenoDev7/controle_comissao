@@ -66,6 +66,18 @@ module.exports = {
         });
     },
 
+    tabela_vendas: (req, res) => {
+        Vendas.findAll({
+            raw: true,
+            order: [['dataVenda', 'ASC']]
+        }).then(vendas => {
+            res.render('tabela_vendas', {
+                vendas
+            })
+        }).catch((error) => {
+            console.error(error)
+        })
+    },
 
     delVendas: (req, res) => {
         Vendas.destroy({
