@@ -35,32 +35,22 @@
             </div>
             <div class="row justify-content-center mt-4">
                 <div class="col-8">
-                    <form id="formEdicao" action="/salvar_edicao" method="POST"
-                        class="form-control bg-transparent form-style">
+                    <form id="formEdicao" action="/salvar_edicao" method="POST" class="form-control bg-transparent form-style">
                         <div class="row">
                             <input type="hidden" name="idVenda" id="idVenda" value="<%= venda.id %>">
                             <div class="col">
-                                <label for="dataVenda" class="form-label text-white fw-light ff-oswald">Data da
-                                    Venda</label>
+                                <label for="dataVenda" class="form-label text-white fw-light ff-oswald">Data da Venda</label>
                                 <input type="date" name="dataVenda" id="dataVenda" class="form-control bg-transparent"
                                     value="<%= venda.dataVenda %>">
                             </div>
                             <div class="col">
-                                <label for="numeroTitulo" class="form-label text-white fw-light ff-oswald">Nº do
-                                    Título</label>
+                                <label for="numeroTitulo" class="form-label text-white fw-light ff-oswald">Nº do Título</label>
                                 <input type="number" name="numeroTitulo" id="numeroTitulo"
                                     class="form-control bg-transparent" value="<%= venda.numeroTitulo %>">
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <label for="nomeTitular" class="form-label text-white fw-light ff-oswald">Nome do
-                                        Titular</label>
-                                    <input type="text" name="nomeTitular" id="nomeTitular"
-                                        class="form-control bg-transparent" value="<%= venda.nomeTitular %>">
-                                </div>
-                                <div class="col">
-                                    <label for="valorVenda" class="form-label text-white fw-light ff-oswald">Valor da
-                                        Venda</label>
+                                    <label for="valorVenda" class="form-label text-white fw-light ff-oswald">Valor da Venda</label>
                                     <input type="text" name="valorVenda" id="valorVenda" class="form-control bg-transparent"
                                         value="<%= venda.valorVenda %>">
                                 </div>
