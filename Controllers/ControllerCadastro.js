@@ -9,10 +9,7 @@ module.exports = {
     cadastroVenda: (req, res) => {
         let dataVenda = req.body.dataVenda;
         let numeroTitulo = req.body.numeroTitulo;
-        let nomeTitular = req.body.nomeTitular;
-        let cpfTitular = req.body.cpfTitular;
         let valorVenda = req.body.valorVenda.replace(',', '.');
-        let consultor = req.body.consultor;
         let valorComissao = valorVenda * 0.015;
         valorComissao = Math.floor(valorComissao * 100) / 100;
 
@@ -24,11 +21,8 @@ module.exports = {
         Vendas.create({
             dataVenda: dataVenda,
             numeroTitulo: numeroTitulo,
-            nomeTitular: nomeTitular,
-            cpfTitular: cpfTitular,
             valorVenda: valorVenda,
-            valorComissao: valorComissao,
-            consultor: consultor
+            valorComissao: valorComissao
         }).then(() => {
             res.redirect('cadastro');
         }).catch((error) => {
@@ -113,10 +107,7 @@ module.exports = {
             worksheet.columns = [
                 { header: 'DATA DA VENDA', key: 'dataVendaFormatada', width: 18 },
                 { header: 'Nº DO TÍTULO', key: 'numeroTitulo', width: 15 },
-                { header: 'TITULAR', key: 'nomeTitular', width: 30 },
-                { header: 'CPF DO TITULAR', key: 'cpfTitular', width: 15 },
                 { header: 'VALOR', key: 'valorVenda', width: 15 },
-                { header: 'CONSULTOR', key: 'consultor', width: 20 },
                 { header: 'COMISSAO', key: 'valorComissao', width: 15 },
                 { header: 'TOTAL DE COMISSÃO', key: 'comissaoTotal', width: 20 }
             ];
@@ -137,10 +128,7 @@ module.exports = {
                 const row = worksheet.addRow({
                     dataVendaFormatada: new Date(venda.dataVenda).toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
                     numeroTitulo: Number(venda.numeroTitulo),
-                    nomeTitular: venda.nomeTitular,
-                    cpfTitular: venda.cpfTitular,
                     valorVenda: parseFloat(venda.valorVenda),
-                    consultor: venda.consultor,
                     valorComissao: valorComissaoNum,
                     comissaoTotal: ''
                 });
@@ -218,10 +206,7 @@ module.exports = {
             idVenda,
             dataVenda,
             numeroTitulo,
-            nomeTitular,
-            cpfTitular,
             valorVenda,
-            consultor
         } = req.body;
 
         let valorComissao = valorVenda * 0.015;
@@ -231,11 +216,8 @@ module.exports = {
             id: idVenda,
             dataVenda: dataVenda,
             numeroTitulo: numeroTitulo,
-            nomeTitular: nomeTitular,
-            cpfTitular: cpfTitular,
             valorVenda: valorVenda.replace(',', '.'),
             valorComissao: valorComissao,
-            consultor: consultor
         };
 
         Vendas.update(novosDados, {

@@ -21,36 +21,6 @@ const vendas = connection.define('info_vendas', {
         }
     },
 
-    nomeTitular: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "O campo não pode ser vazio"
-            }
-        }
-    },
-
-    cpfTitular: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "O campo não pode ser vazio"
-            }
-        }
-    },
-
-    consultor: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: {
-                msg: "O campo não pode ser vazio"
-            }
-        }
-    },
-
     valorVenda: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,

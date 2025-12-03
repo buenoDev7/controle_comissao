@@ -29,7 +29,7 @@
         <div class="container pt-5">
             <!-- Título -->
             <div class="row justify-content-center">
-                <h1 class="text-center mt-3 ff-oswald text-light fw-light">
+                <h1 class="text-center mt-5 ff-oswald text-light fw-light">
                     Informações da Venda
                 </h1>
             </div>
@@ -38,46 +38,28 @@
                     <form id="formVenda" action="cadastrar_venda" method="POST"
                         class="form-control bg-transparent form-style">
                         <div class="row">
-                            <div class="col-12 mt-2">
-                                <label for="dataVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Data da
-                                    Venda</label>
+                            <!-- Data da Venda -->
+                            <div class="col-4 mt-2">
+                                <label for="dataVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Data da Venda</label>
                                 <input type="date" name="dataVenda" id="dataVenda" class="form-control bg-transparent"
-                                    required autocomplete="off" min="1900-01-01" max="2500-12-31">
+                                required autocomplete="off" min="1900-01-01" max="2500-12-31">
                             </div>
-                            <div class="col-12 mt-2">
-                                <label for="numeroTitulo" class="form-label fw-semibold mb-1 fs-6 text-light">Nº do
-                                    Título</label>
+                            <!-- Nº do Título -->
+                            <div class="col-4 mt-2">
+                                <label for="numeroTitulo" class="form-label fw-semibold mb-1 fs-6 text-light">Nº do Título</label>
                                 <input type="number" name="numeroTitulo" id="numeroTitulo"
-                                    class="form-control bg-transparent" required autocomplete="off" placeholder="Nº">
+                                class="form-control bg-transparent" required autocomplete="off" placeholder="Nº">
                             </div>
-                            <div class="col-6 mt-2">
-                                <label for="titular" class="form-label fw-semibold mb-1 fs-6 text-light">Nome do
-                                    Titular</label>
-                                <input type="text" name="nomeTitular" id="nomeTitular"
-                                    class="form-control bg-transparent" required autocomplete="off" placeholder="Nome:">
-                            </div>
-                            <div class="col-6 mt-2">
-                                <label for="titular" class="form-label fw-semibold mb-1 fs-6 text-light">CPF do
-                                    Titular</label>
-                                <input type="text" name="cpfTitular" id="cpfTitular" class="form-control bg-transparent"
-                                    required autocomplete="off" placeholder="CPF:" maxlength="14">
-                            </div>
-                            <div class="col-6 mt-2">
-                                <label for="valorVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Valor da
-                                    Venda</label>
+                            <!-- Valor da Venda -->
+                            <div class="col-4 mt-2">
+                                <label for="valorVenda" class="form-label fw-semibold mb-1 fs-6 text-light">Valor da Venda</label>
                                 <input type="text" name="valorVenda" id="valorVenda" class="form-control bg-transparent"
                                     required autocomplete="off" placeholder="R$">
                             </div>
-                            <div class="col-6 mt-2">
-                                <label for="consultor"
-                                    class="form-label fw-semibold mb-1 fs-6 text-light">Consultor</label>
-                                <input type="text" name="consultor" id="consultor" class="form-control bg-transparent"
-                                    required autocomplete="off" placeholder="Nome:">
-                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-3">
-                                <button type="submit" class="btn btn-success mt-3">Salvar</button>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success mt-3 w-100">Salvar</button>
                             </div>
                         </div>
                     </form>
