@@ -26,187 +26,156 @@
 
 <body>
     <% let i=1; %>
-        <main>
-            <div class="container mb-2">
-                <div class="row text-center title-vendas">
-                    <!-- Link para cadastro de Venda -->
-                    <div class="col-12 col-sm-3">
-                        <a href="/cadastro" class="nav-link link-vendas">
-                            <i class="bi bi-plus fs-2"></i>
-                        </a>
-                    </div>
-                    <div class="col-6 mt-2 ms-4 ms-xl-5">
-                        <h1 class="fs-3 mt-3 text-white ff-oswald fw-light">
-                            <div class="col mb-2">
-                                <span>Vendas: <span class="text-warning">
-                                        <%= venda.length %>
-                                    </span></span>
-                            </div>
-                            <div class="col">
-                                <span>Comissão: <span class="valor-comissao">
-                                        <%= comissaoTotal %>
-                                    </span></span>
-                            </div>
-                        </h1>
-                    </div>
-                    <div class="col">
-                        <form action="relatorio_vendas" method="post" class="form-control bg-transparent border-0">
-                            <button type="submit"
-                                class="bi bi-filetype-xlsx fs-4 bg-transparent border-0 relatorio-vendas me-4">
-                                <span class="d-block ff-oswald fw-lighter fs-6">Gerar .xlsx</span>
-                            </button>
-                        </form>
-                        <form action="del_vendas" method="post" class="form-control bg-transparent border-0">
-                            <button type="submit" class="bi bi-trash3 fs-4 bg-transparent border-0 del-itens me-4">
-                                <span class="d-block ff-oswald fw-lighter fs-6">Limpar</span>
-                            </button>
-                        </form>
-                    </div>
+    <main>
+        <div class="container mb-2">
+            <div class="row text-center title-vendas">
+                <!-- Link para cadastro de Venda -->
+                <div class="col-12 col-sm-3">
+                    <a href="/cadastro" class="nav-link link-vendas">
+                        <i class="bi bi-plus fs-2"></i>
+                    </a>
                 </div>
-
-                <div class="accordion px-5" id="accordionInfoVenda">
-                    <% venda.forEach(venda=> { %>
-                        <div class="accordion-item bg-transparent border-0 mb-3 mt-5">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed bg-transparent" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#accordion-<%= venda.id %>"
-                                    aria-expanded="false" aria-controls="accordion-<%= venda.id %>">
-                                    <p class="fs-6 mb-1 fw-light">
-                                        <span class="fs-5 text-white">
-                                            <%= i++ %> -&nbsp;
-                                        </span>
-                                    </p>
-                                    <p class="fs-5 mb-1 text-white ff-oswald fw-lighter">
-                                        <%= venda.nomeTitular%>
-                                    </p>
-
-                                </button>
-                            </h2>
-                            <div id="accordion-<%= venda.id %>" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionInfoVenda">
-                                <div class="accordion-body bg-transparent text-light">
-                                    <div class="row">
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <h5 class="text-start mt-2">
-                                                    <i class="bi bi-info-circle"></i>
-                                                    <span class="ff-oswald fw-lighter">
-                                                        Informações
-                                                    </span>
-                                                </h5>
-                                            </div>
-                                            <div class="col-3">
-                                                <a href="/editar_venda/<%= venda.id %>"
-                                                    class="text-white fw-light fs-5 link-edit">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <hr class="mt-2 text-danger">
-                                        <form action="del_venda" method="post" class="bg-transparent border-0">
-                                            <input type="hidden" name="idVenda" id="id_venda" value="<%=venda.id %>">
-                                        </form>
-                                        <h5 class="mt-2">
-                                            <i class="bi bi-calendar4-event fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                Data da venda:
-                                            </span>
-                                            <span class="fw-light">
-                                                <%= new Date(venda.dataVenda).toLocaleDateString('pt-BR', {
-                                                    timeZone: 'UTC' }) %>
-                                            </span>
-                                        </h5>
-                                        <h5>
-                                            <i class="bi bi-person-vcard-fill fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                Nome do Titular:
-                                            </span>
-                                            <span class="fw-light">
-                                                <%= venda.nomeTitular%>
-                                            </span>
-                                        </h5>
-                                        <h5>
-                                            <i class="bi bi-currency-dollar fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                Valor da Venda:
-                                            </span>
-                                            <span class="fw-light">
-                                                R$<%= venda.valorVenda %>
-                                            </span>
-                                        </h5>
-                                        <h5 class="mb-0">
-                                            <i class="bi bi-piggy-bank fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                Comissão:
-                                            </span>
-                                            <span class="fw-light">
-                                                R$<%= venda.valorComissao.replace('.', ',' )%>
-                                            </span>
-                                        </h5>
-                                        <h5 class="mb-0 mt-2">
-                                            <i class="bi bi-person fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                CPF do Titular:
-                                            </span>
-                                            <span class="fw-light">
-                                                <%= venda.cpfTitular %>
-                                            </span>
-                                        </h5>
-                                        <h5 class="mb-0 mt-1">
-                                            <i class="bi bi-person fw-lighter pe-2"></i>
-                                            <span class="ff-oswald fw-light">
-                                                Consultor:
-                                            </span>
-                                            <span class="fw-light">
-                                                <%= venda.consultor %>
-                                            </span>
-                                        </h5>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-6 mt-2 ms-4 ms-xl-5">
+                    <h1 class="fs-3 mt-3 text-white ff-oswald fw-light">
+                        <div class="col mb-2">
+                            <span>Vendas: <span class="text-warning">
+                                    <%= venda.length %>
+                                </span></span>
                         </div>
-                        <hr class="text-danger mb-4 me-4 text-danger">
-                        <% }) %>
+                        <div class="col">
+                            <span>Comissão: <span class="valor-comissao">
+                                    <%= comissaoTotal %>
+                                </span></span>
+                        </div>
+                    </h1>
+                </div>
+                <div class="col">
+                    <form action="relatorio_vendas" method="post" class="form-control bg-transparent border-0">
+                        <button type="submit"
+                            class="bi bi-filetype-xlsx fs-4 bg-transparent border-0 relatorio-vendas me-4">
+                            <span class="d-block ff-oswald fw-lighter fs-6">Gerar .xlsx</span>
+                        </button>
+                    </form>
+                    <form action="del_vendas" method="post" class="form-control bg-transparent border-0">
+                        <button type="submit" class="bi bi-trash3 fs-4 bg-transparent border-0 del-itens me-4">
+                            <span class="d-block ff-oswald fw-lighter fs-6">Limpar</span>
+                        </button>
+                    </form>
                 </div>
             </div>
-        </main>
 
-        <script>
-            // > Exibição da contagem de vendas se houver scroll
-            // > Captura a div header, o texto "Vendas: <%= %> para manipulação"
-            document.addEventListener('DOMContentLoaded', function () {
-                const header = document.querySelector('.title-vendas');
-                const vendasCount = document.querySelector('.title-vendas h1').innerText;
-                const vendas = document.createElement('div');
+            <div class="accordion px-5" id="accordionInfoVenda">
+                <% venda.forEach(venda=> { %>
+                <div class="accordion-item bg-transparent border-0 mb-3 mt-5">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#accordion-<%= venda.id %>"
+                            aria-expanded="false" aria-controls="accordion-<%= venda.id %>">
+                            <p class="fs-6 mb-1 fw-light">
+                                <span class="fs-5 text-white">
+                                    <%= i++ %> -&nbsp;
+                                </span>
+                            </p>
+                            <p class="fs-5 mb-1 text-white ff-oswald fw-lighter">
+                                <%= venda.numeroTitulo%>
+                            </p>
 
-                // > Estiliza a mensagem
-                vendas.style.position = 'sticky';
-                vendas.style.bottom = '20px';
-                vendas.style.marginLeft = '20px';
-                vendas.style.fontSize = '14px';
-                vendas.style.color = 'white';
-                vendas.classList.add('ff-oswald')
-                vendas.classList.add('fw-lighter')
-                // > Inicialmente escondido
-                vendas.style.display = 'none';
-                vendas.innerText = vendasCount;
-                document.body.appendChild(vendas);
-                window.addEventListener('scroll', function () {
-                    const headerRect = header.getBoundingClientRect();
+                        </button>
+                    </h2>
+                    <div id="accordion-<%= venda.id %>" class="accordion-collapse collapse"
+                        data-bs-parent="#accordionInfoVenda">
+                        <div class="accordion-body bg-transparent text-light">
+                            <div class="row">
+                                    <div class="col-9">
+                                        <h5 class="text-start mt-2">
+                                            <i class="bi bi-info-circle"></i>
+                                            <span class="ff-oswald fw-lighter">
+                                                Informações
+                                            </span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-2 d-flex align-items-center justify-content-around ms-4">
+                                        <a href="/editar_venda/<%= venda.id %>"
+                                            class="text-white fw-light fs-5 link-edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>                                                        
+                                        <form action="del_venda" method="post" class="bg-transparent border-0">
+                                            <input type="hidden" name="idVenda" id="id_venda" value="<%=venda.id %>">
+                                            <button type="submit" class="bg-transparent border-0 bi bi-trash3 text-white fs-5"></button>
+                                        </form>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <hr class="mt-2 text-danger">
+                                <h5 class="mt-2">
+                                    <i class="bi bi-calendar4-event fw-lighter pe-2"></i>
+                                    <span class="ff-oswald fw-light">
+                                        Data da venda:
+                                    </span>
+                                    <span class="fw-light">
+                                        <%= new Date(venda.dataVenda).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %>
+                                    </span>
+                                </h5>
+                                <h5>
+                                    <i class="bi bi-currency-dollar fw-lighter pe-2"></i>
+                                    <span class="ff-oswald fw-light">
+                                        Valor da Venda:
+                                    </span>
+                                    <span class="fw-light">
+                                        R$<%= venda.valorVenda %>
+                                    </span>
+                                </h5>
+                                <h5 class="mb-0">
+                                    <i class="bi bi-piggy-bank fw-lighter pe-2"></i>
+                                    <span class="ff-oswald fw-light">
+                                        Comissão:
+                                    </span>
+                                    <span class="fw-light">
+                                        R$<%= venda.valorComissao.replace('.', ',' )%>
+                                    </span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="text-danger mb-4 me-4 text-danger">
+                <% }) %>
+            </div>
+        </div>
+    </main>
 
-                    // Se o header estiver fora da view no topo:
-                    if (headerRect.bottom < 0) {
-                        // Mostra a mensagem
-                        vendas.style.display = 'block';
-                    } else {
-                        // Esconde a mensagem
-                        vendas.style.display = 'none';
-                    }
-                });
-            });        
-        </script>
+    <script>
+        // > Exibição da contagem de vendas se houver scroll
+        // > Captura a div header, o texto "Vendas: <%= %> para manipulação"
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('.title-vendas');
+            const vendasCount = document.querySelector('.title-vendas h1').innerText;
+            const vendas = document.createElement('div');
 
+            // > Estiliza a mensagem
+            vendas.style.position = 'sticky';
+            vendas.style.bottom = '20px';
+            vendas.style.marginLeft = '20px';
+            vendas.style.fontSize = '14px';
+            vendas.style.color = 'white';
+            vendas.classList.add('ff-oswald')
+            vendas.classList.add('fw-lighter')
+            // > Inicialmente escondido
+            vendas.style.display = 'none';
+            vendas.innerText = vendasCount;
+            document.body.appendChild(vendas);
+            window.addEventListener('scroll', function () {
+                const headerRect = header.getBoundingClientRect();
 
+                // Se o header estiver fora da view no topo:
+                if (headerRect.bottom < 0) {
+                    // Mostra a mensagem
+                    vendas.style.display = 'block';
+                } else {
+                    // Esconde a mensagem
+                    vendas.style.display = 'none';
+                }
+            });
+        });        
+    </script>
 </body>

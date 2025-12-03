@@ -184,6 +184,17 @@ module.exports = {
         }
     },
 
+    del_venda: (req, res) => {
+        let idVenda = req.body.idVenda;
+
+        Vendas.destroy({
+            where: {
+                id: idVenda
+            }
+        }).then(() => {
+            res.redirect('lista_vendas')
+        })
+    },
 
     editarVenda: (req, res) => {
         const id = req.params.id

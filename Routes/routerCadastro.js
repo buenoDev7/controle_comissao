@@ -17,6 +17,9 @@ router.post('/del_vendas', ControllerCadastro.delVendas);
 // > Relatório de Vendas
 router.post('/relatorio_vendas', ControllerCadastro.relatorioVendas);
 
+// > Deletar venda específica
+router.post('/del_venda', ControllerCadastro.del_venda);
+
 // > Editar informações da venda
 router.get('/editar_venda/:id', ControllerCadastro.editarVenda);
 
