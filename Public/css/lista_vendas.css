@@ -20,6 +20,18 @@ body {
     padding-bottom: 30px;
 }
 
+.sidebar {
+    max-width: fit-content;
+    position: absolute;
+    right: 20px;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .accordion-button:focus,
 .accordion-button:not(:focus),
 .accordion-button::after {
@@ -44,43 +56,8 @@ body {
     top: 20px;
 }
 
-.del-itens {
-    position: absolute;
-    right: 40px;
-    top: 26px;
-    color: #e3e3e3;
-}
 
 .link-edit {
     position: relative;
     left: 99%;
-}
-
-.del-itens:hover,
-.del-itens:focus {
-    border: 0;
-    outline: none;
-    color: rgb(233, 97, 97);
-    transform: scale(1.1);
-    transition: all 320ms ease-in-out;
-    filter: drop-shadow(5px 5px 15px rgb(233, 97, 97));
-}
-
-.relatorio-vendas {
-    position: absolute;
-    right: 120px;
-    top: 26px;
-    color: #e3e3e3;
-}
-
-.link-vendas:focus,
-.link-vendas:hover,
-.relatorio-vendas:hover,
-.relatorio-vendas:focus {
-    border: 0;
-    outline: none;
-    color: rgb(91, 228, 91);
-    transform: scale(1.1);
-    transition: all 320ms ease-in-out;
-    filter: drop-shadow(5px 5px 15px rgb(91, 228, 91));
 }

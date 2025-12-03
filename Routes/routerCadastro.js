@@ -14,6 +14,9 @@ router.get('/lista_vendas', ControllerCadastro.listaVendas);
 // > Deletar vendas
 router.post('/del_vendas', ControllerCadastro.delVendas);
 
+// > Tabela de Vendas
+router.get('/tabela_vendas', ControllerCadastro.tabela_vendas);
+
 // > Relatório de Vendas
 router.post('/relatorio_vendas', ControllerCadastro.relatorioVendas);
 

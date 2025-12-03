@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Vendas - Yan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Bootsrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/tabela_vendas.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <% let i = 1; %>
+    <div class="container">
+        <!-- Voltar -->
+        <a href="/lista_vendas" class="link-vendas">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+        <div class="row text-center pt-5">
+            <h1 class="ff-sora text-white fw-lighter">
+                Tabela de Vendas
+            </h1>
+            <hr class="text-center w-75 text-white mx-auto mt-3">
+        </div>
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-8">
+                <table class="table table-striped table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th class="fw-semibold fs-6">Qtd</th>
+                            <th class="fw-semibold fs-6">Data da Venda</th>
+                            <th class="fw-semibold fs-6">Nº do Título</th>
+                            <th class="fw-semibold fs-6">Valor da Venda</th>
+                            <th class="fw-semibold fs-6">Comissão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% vendas.forEach(venda=> { %>
+                            <tr>
+                                <td class="py-3">
+                                    <%= i ++%>
+                                </td>
+                                <td class="py-3">
+                                    <%= new Date(venda.dataVenda).toLocaleString('pt-BR', { timeZone: 'UTC' }).split(',')[0]%>
+                                </td>
+                                <td class="py-3">
+                                    <%= venda.numeroTitulo%>
+                                </td>
+                                <td class="py-3">
+                                    R$<%= venda.valorVenda.replace('.', ',')%>
+                                </td>
+                                <td class="py-3">
+                                    R$<%= venda.valorComissao.replace('.', ',')%>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -49,16 +49,19 @@
                         </div>
                     </h1>
                 </div>
-                <div class="col">
+                <div class="sidebar">
                     <form action="relatorio_vendas" method="post" class="form-control bg-transparent border-0">
-                        <button type="submit"
-                            class="bi bi-filetype-xlsx fs-4 bg-transparent border-0 relatorio-vendas me-4">
-                            <span class="d-block ff-oswald fw-lighter fs-6">Gerar .xlsx</span>
+                        <button type="submit" class="bi bi-filetype-xlsx fs-4 bg-transparent border-0 text-white">
+                            <span class="d-block ff-oswald fw-lighter fs-6 text-white">Relatório</span>
                         </button>
                     </form>
+                    <a href="/tabela_vendas" class="text-center text-white text-decoration-none">
+                        <i class="bi bi-table fs-4 bg-transparent border-0"></i>
+                        <span class="d-block ff-oswald fw-lighter fs-6">Vendas</span>
+                    </a>
                     <form action="del_vendas" method="post" class="form-control bg-transparent border-0">
-                        <button type="submit" class="bi bi-trash3 fs-4 bg-transparent border-0 del-itens me-4">
-                            <span class="d-block ff-oswald fw-lighter fs-6">Limpar</span>
+                        <button type="submit" class="bi bi-trash3 fs-4 bg-transparent border-0 text-white">
+                            <span class="d-block ff-oswald fw-lighter fs-6 text-white">Limpar</span>
                         </button>
                     </form>
                 </div>
